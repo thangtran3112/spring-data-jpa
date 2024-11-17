@@ -23,6 +23,13 @@ public class Section extends BaseEntity {
 
   private int sectionOrder;
 
+  /**
+   * 
+   * For @ManyToOne, we need to use @JoinColumn to specify the foreign key column
+   *  - name: the name of the foreign key column
+   *  - referencedColumnName: the name of the primary key column of the referenced table, course_id
+   * This is the owner-side of the relationship
+   */
   @ManyToOne
   @JoinColumn(name = "course_id")
   private Course course;

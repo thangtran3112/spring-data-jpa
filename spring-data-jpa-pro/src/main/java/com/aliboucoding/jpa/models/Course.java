@@ -25,6 +25,12 @@ public class Course extends BaseEntity {
 
   private String description;
 
+  /** 
+   * Courses is the owner-side of the relation, where we will need @JoinTable 
+   * Author is the inverse-side of the relation, where we will not need @JoinTable
+   * This will create a join table named 'authors_courses' with the columns 'course_id' and 'author_id'
+   * The @JsonIgnore annotation is used to prevent infinite recursion when serializing/deserializing the entities
+   * */
   @JsonIgnore
   @ManyToMany
   @JoinTable(
@@ -38,6 +44,7 @@ public class Course extends BaseEntity {
   )
   private List<Author> authors;
 
+  // This is not the owner side of this relation
   @OneToMany(mappedBy = "course")
   private List<Section> sections;
 

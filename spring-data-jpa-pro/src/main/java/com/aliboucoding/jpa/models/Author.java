@@ -8,41 +8,49 @@ import java.util.List;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true) // equals and hashcode will consider parent properties as well, when callSuper=true
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
+@SuperBuilder // used this so the child class can create builder from parent properties
 @Entity
 @NamedQueries(
-        {
-          @NamedQuery(
-                  name = "Author.findByNamedQuery",
-                  query = "select a from Author a where a.age >= :age"
-          ),
-          @NamedQuery(
-                  name = "Author.updateByNamedQuery",
-                  query = "update Author a set a.age = :age"
-          )
-        }
+    {
+        @NamedQuery(
+            name = "Author.findByNamedQuery",
+            query = "select a from Author a where a.age >= :age"
+        ),
+        @NamedQuery(
+            name = "Author.updateByNamedQuery",
+            query = "update Author a set a.age = :age"
+        )
+    }
 )
 public class Author extends BaseEntity {
 
-  private String firstName;
+    /*
+    @Column(
+        name = "f_name",
+        length = 50
+    ) */
+    private String firstName;
 
-  private String lastName;
+    private String lastName;
 
-  @Column(
-      unique = true,
-      nullable = false
-  )
-  private String email;
+    @Column(
+        unique = true,
+        nullable = false
+    )
+    private String email;
 
-  private int age;
+    private int age;
 
-  @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
-  @JsonIgnore
-  private List<Course> courses;
+    /**
+     * mappedBy = "authors" means that the "authors" field in the Course class is the Owner of the relationship
+     * fetch = FetchType.EAGER means that the courses will be loaded eagerly
+     */
+    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Course> courses;
 
 }
