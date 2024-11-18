@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder // used this so the child class can create builder from parent properties
 @Entity
-@NamedQueries(
+@NamedQueries(  // use for optimizing performance, or for complex logics, alternative is CriteriaQuery
     {
         @NamedQuery(
             name = "Author.findByNamedQuery",

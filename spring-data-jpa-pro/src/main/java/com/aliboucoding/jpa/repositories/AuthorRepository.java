@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface AuthorRepository extends JpaRepository<Author, Integer>, JpaSpecificationExecutor<Author> {
 
+    //Link to @NameQuery, declared inside Author Entity
     @Transactional
     List<Author> findByNamedQuery(@Param("age") int age);
 

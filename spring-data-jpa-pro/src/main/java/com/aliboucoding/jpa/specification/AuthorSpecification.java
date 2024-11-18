@@ -6,6 +6,12 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
+/**
+ * Another way of using CriteriaBuilder query
+ * Specification is a functional interface, so we can use lambda expression
+ * This can be used to create complex query with Predicate, see JpaApplication.java
+ * This can be used as a small component, to compose a complex query
+ */
 public class AuthorSpecification {
 
     public static Specification<Author> hasAge(int age) {
