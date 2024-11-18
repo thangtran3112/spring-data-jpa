@@ -38,7 +38,7 @@ public class JpaApplication {
 
 			// update author with ID = 1
 			var author = Author.builder()
-					.id(1)
+					.id(1) // update existing row with id = 1
 					.firstName("Ali")
 					.lastName("Bouali")
 					.age(34)

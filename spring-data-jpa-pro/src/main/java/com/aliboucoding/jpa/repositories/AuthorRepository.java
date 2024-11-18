@@ -20,8 +20,8 @@ public interface AuthorRepository extends JpaRepository<Author, Integer>, JpaSpe
     void updateByNamedQuery(@Param("age") int age);
 
     // update Author a set a.age = 22 where a.id = 1
-    @Modifying
-    @Transactional
+    @Modifying //tell Hibernate to register this query
+    @Transactional //must add @Transactional as the query preparation and commitment must be consistent
     @Query("update Author a set a.age = :age where a.id = :id")
     int updateAuthor(int age, int id);
 
